@@ -1,0 +1,8 @@
+.header {
+  padding: 3px 15px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: absolute;
+}
