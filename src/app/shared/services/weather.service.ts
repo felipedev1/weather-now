@@ -1,3 +1,5 @@
+import { IErrorResponse } from './../models/errorResponse.model';
+import { map } from 'rxjs/operators';
 import { IApiResponse } from './../models/apiResponse.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -23,7 +25,22 @@ export class WeatherService {
         query
       }
     }
-    
-    return this.http.get<IApiResponse>(fullUrl, options)
+
+    return this.http.get(fullUrl, options).pipe(
+      map((response) => {
+        // as the API returns errors with a status of 200 OK, 
+        // I had to throw an error manually
+
+        const errorResponse = response as IErrorResponse
+        const successResponse = response as IApiResponse
+
+        if (errorResponse.success === false) {
+          alert('Request failed. Check the city and try again')
+          throw errorResponse
+        }
+
+        return successResponse
+      })
+    )
   }
 }
