@@ -1,46 +1,55 @@
-<div class="home day">
+<div class="home" 
+  [class.day]="weather && weather.current.is_day == 'yes'"
+  [class.night]="weather && weather.current.is_day == 'no'"
+>
   <div class="container">
     <div class="search">
-      <input type="search" placeholder="Search for a city">
-      <button>
+      <input 
+        [(ngModel)]="city" 
+        (keydown.enter)="search()" 
+        type="search" 
+        placeholder="Search for a city"
+        required
+      >
+      <button (click)="search()">
         <img src="assets/images/loupe.svg" width="24px" alt="search">
       </button>
     </div>
     <div class="glass">
-      <div class="weather-data">
-        <span class="location">New York</span>
+      <div *ngIf="weather" class="weather-data">
+        <span class="location">{{weather.location.name}}</span>
         <div style="display: flex; align-items: center;">
-          <img class="weather-icon" src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png" alt="sunny">
-          <strong class="temperature">12°</strong>
+          <img class="weather-icon" [src]="weather.current.weather_icons" alt="sunny">
+          <strong class="temperature">{{weather.current.temperature}}°</strong>
         </div>
-        <span class="weather-description">Sunny</span>
+        <span class="weather-description">{{weather.current.weather_descriptions}}</span>
         <div class="details">
           <div>
             <img src="assets/images/wind.svg" alt="ssw">
             <div>
               <span>Wind Speed</span>
-              <strong>7 Km/h</strong>
+              <strong>{{weather.current.wind_speed}} Km/h</strong>
             </div>
           </div>
           <div>
             <img src="assets/images/gauge.svg" alt="ssw">
             <div>
               <span>Pressure</span>
-              <strong>1005 hPa</strong>
+              <strong>{{weather.current.pressure}} hPa</strong>
             </div>
           </div>
           <div>
             <img src="assets/images/humidity.svg" alt="humidity">
             <div>
               <span>Humidity</span>
-              <strong>60%</strong>
+              <strong>{{weather.current.humidity}}%</strong>
             </div>
           </div>
           <div>
             <img src="assets/images/thermometer.svg" alt="ssw">
             <div>
               <span>Feels Like</span>
-              <strong>10°</strong>
+              <strong>{{weather.current.feelslike}}°</strong>
             </div>
           </div>
         </div>

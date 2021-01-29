@@ -1,3 +1,5 @@
+import { IApiResponse } from './../../shared/models/apiResponse.model';
+import { WeatherService } from './../../shared/services/weather.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public city = ''
+  public weather: IApiResponse
+
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
+    const initialCity = 'New York'
+    this.weatherService.getCurrentWeather(initialCity).subscribe({
+      next: (weather: IApiResponse) => {
+        this.weather = weather
+      },
+      error: (err) => console.log(err),
+    })
+  }
+
+  
+
+  search(): void {
+    this.weatherService.getCurrentWeather(this.city).subscribe({
+      next: (weather: IApiResponse) => {
+        this.weather = weather
+      },
+      error: (err) => console.log(err),
+    })
   }
 
 }
