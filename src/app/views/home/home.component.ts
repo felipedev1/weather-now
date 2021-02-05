@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-    const initialCity = 'New York'
+    const initialCity = localStorage.getItem('last_city') || 'New York'
     this.weatherService.getCurrentWeather(initialCity).subscribe({
       next: (weather: IApiResponse) => {
         this.weather = weather
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     this.weatherService.getCurrentWeather(this.city).subscribe({
       next: (weather: IApiResponse) => {
         this.weather = weather
+        localStorage.setItem('last_city', this.city)
       },
       error: (err) => console.log(err),
     })
