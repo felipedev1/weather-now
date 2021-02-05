@@ -17,7 +17,7 @@
     </div>
     <div class="glass">
       <div *ngIf="weather" class="weather-data">
-        <span class="location">{{weather.location.name}}</span>
+        <span class="location">{{weather.location.name}}, {{weather.location.country}}</span>
         <div style="display: flex; align-items: center;">
           <img class="weather-icon" [src]="weather.current.weather_icons" alt="sunny">
           <strong class="temperature">{{weather.current.temperature}}°</strong>
@@ -53,6 +53,7 @@
             </div>
           </div>
         </div>
+        <span>{{weather.location.localtime}}</span>
       </div>
     </div>
   </div>
