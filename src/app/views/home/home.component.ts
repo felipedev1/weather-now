@@ -48,6 +48,11 @@ export class HomeComponent implements OnInit {
       next: (weather: IApiResponse) => {
         this.weather = weather
         localStorage.setItem('last_city', this.city)
+
+        this.citiesService.saveCity({
+          cityName: weather.location.name,
+          country: weather.location.country
+        }).subscribe()
       },
       error: (err) => console.log(err),
     })
