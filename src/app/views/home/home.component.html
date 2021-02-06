@@ -4,13 +4,19 @@
 >
   <div class="container">
     <div class="search">
-      <input 
-        [(ngModel)]="city" 
+      <input
         (keydown.enter)="search()" 
         type="search" 
         placeholder="Search for a city"
         required
+        list="suggest"
+        [formControl]="searchControl"
       >
+      <datalist id="suggest">
+        <option *ngFor="let suggestCity of suggestedCities">
+          {{suggestCity.cityName}}, {{suggestCity.country}}
+        </option>
+      </datalist>
       <button (click)="search()">
         <img src="assets/images/loupe.svg" width="24px" alt="search">
       </button>

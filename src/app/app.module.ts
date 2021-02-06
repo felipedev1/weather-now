@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalDateTimePipe } from './shared/pipes/local-date-time.pipe';
 
 @NgModule({
@@ -23,7 +23,8 @@ import { LocalDateTimePipe } from './shared/pipes/local-date-time.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     LocalDateTimePipe
