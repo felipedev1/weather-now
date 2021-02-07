@@ -14,7 +14,7 @@
       >
       <datalist id="suggest">
         <option *ngFor="let suggestCity of suggestedCities">
-          {{suggestCity.cityName}}, {{suggestCity.country}}
+          {{suggestCity.cityName}}, {{suggestCity.region}}, {{suggestCity.country}}
         </option>
       </datalist>
       <button (click)="search()">
@@ -23,7 +23,7 @@
     </div>
     <div class="glass">
       <div *ngIf="weather" class="weather-data">
-        <span class="location">{{weather.location.name}}, {{weather.location.country}}</span>
+        <span class="location">{{weather.location.name}}, {{weather.location.region}}, {{weather.location.country}}</span>
         <div style="display: flex; align-items: center;">
           <img class="weather-icon" [src]="weather.current.weather_icons" alt="sunny">
           <strong class="temperature">{{weather.current.temperature}}°</strong>

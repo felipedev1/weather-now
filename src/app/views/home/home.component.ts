@@ -51,7 +51,8 @@ export class HomeComponent implements OnInit {
 
         this.citiesService.saveCity({
           cityName: weather.location.name,
-          country: weather.location.country
+          country: weather.location.country,
+          region: weather.location.region
         }).subscribe()
       },
       error: (err) => console.log(err),
